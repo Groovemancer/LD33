@@ -300,6 +300,12 @@
     <ClCompile Include="src\graphics\animation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\tileengine\tileset.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tileengine\tilemap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ext\freetype\include\ft2build.h">
@@ -459,6 +465,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\graphics\animation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tileengine\tileset.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tileengine\tilemap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\pointainer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -26,8 +26,11 @@ namespace aven
 		{
 			delete m_Shader;
 			delete m_Renderer;
-			for (int i = 0; i < m_Renderables.size(); i++)
-				delete m_Renderables[i];
+
+			//for (int i = 0; i < m_Renderables.size(); i++)
+				//delete m_Renderables[i];
+			
+			m_Renderables.clear();
 		}
 
 		void Layer::add(Renderable2D* renderable)
@@ -41,7 +44,7 @@ namespace aven
 
 			m_Renderer->begin();
 
-			for (const Renderable2D* renderable : m_Renderables)
+			for (Renderable2D* renderable : m_Renderables)
 				renderable->submit(m_Renderer);
 			
 			m_Renderer->end();

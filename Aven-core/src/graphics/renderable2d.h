@@ -10,6 +10,9 @@
 #include "../math/math.h"
 #include "shader.h"
 
+#include <iostream>
+#include <string>
+
 namespace aven
 {
 	namespace graphics
@@ -37,7 +40,10 @@ namespace aven
 				: m_Position(position), m_Size(size), m_Color(color), m_Texture(nullptr)
 			{ setUVDefaults(); }
 
-			virtual ~Renderable2D() { }
+			virtual ~Renderable2D()
+			{
+				std::cout << "Deleted Renderable!" << std::endl;
+			}
 
 			virtual void submit(Renderer2D* renderer) const
 			{
@@ -61,6 +67,8 @@ namespace aven
 			inline const std::vector<math::Vec2>& getUV() const { return m_UV; }
 
 			inline const GLuint getTID() const { return m_Texture ? m_Texture->getID() : 0; }
+
+			inline Texture* getTexture() const { return m_Texture; }
 		private:
 			void setUVDefaults()
 			{

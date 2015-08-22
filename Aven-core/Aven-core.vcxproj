@@ -159,6 +159,8 @@
     <ClCompile Include="src\math\vec2.cpp" />
     <ClCompile Include="src\math\vec3.cpp" />
     <ClCompile Include="src\math\vec4.cpp" />
+    <ClCompile Include="src\tileengine\tilemap.cpp" />
+    <ClCompile Include="src\tileengine\tileset.cpp" />
     <ClCompile Include="tilelayer.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -209,9 +211,12 @@
     <ClInclude Include="src\math\vec2.h" />
     <ClInclude Include="src\math\vec3.h" />
     <ClInclude Include="src\math\vec4.h" />
+    <ClInclude Include="src\tileengine\tilemap.h" />
+    <ClInclude Include="src\tileengine\tileset.h" />
     <ClInclude Include="src\utils\fileutils.h" />
     <ClInclude Include="src\utils\imageload.h" />
     <ClInclude Include="src\utils\log.h" />
+    <ClInclude Include="src\utils\pointainer.h" />
     <ClInclude Include="src\utils\stringutils.h" />
     <ClInclude Include="src\utils\timer.h" />
     <ClInclude Include="tilelayer.h" />

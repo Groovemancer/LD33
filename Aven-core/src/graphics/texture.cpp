@@ -13,6 +13,7 @@ namespace aven
 		Texture::~Texture()
 		{
 			glDeleteTextures(1, &m_TID);
+			AVEN_INFO("Texture deleted!");
 		}
 
 		GLuint Texture::load()

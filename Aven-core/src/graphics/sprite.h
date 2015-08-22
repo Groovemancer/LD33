@@ -2,6 +2,7 @@
 
 #include "renderable2d.h"
 #include "animation.h"
+#include <iostream>
 
 namespace aven
 {
@@ -25,6 +26,11 @@ namespace aven
 			Sprite(float x, float y, float width, float height, math::Vec4 color);
 			Sprite(float x, float y, float width, float height, Texture* texture);
 			Sprite(float x, float y, float width, float height, float srcX, float srcY, float srcWidth, float srcHeight, Texture* texture);
+
+			~Sprite()
+			{
+				std::cout << "Deleted Sprite!" << std::endl;
+			}
 
 			void setUV(std::vector<math::Vec2> uv);
 

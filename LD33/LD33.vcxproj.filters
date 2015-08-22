@@ -37,6 +37,12 @@
     <Image Include="res\textures\test.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\textures\tilesets\tileset00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\tileset00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\basic.frag" />

@@ -57,16 +57,18 @@ namespace aven
 			m_SubHeight = subHeight;
 		}
 
+		static bool done = false;
+
 		Sprite* Sprite::getSlice(int index)
 		{
 			int cols = m_Texture->getWidth() / m_SubWidth;
 			int rows = m_Texture->getHeight() / m_SubHeight;
-			
+
 			float x = index % cols;
 			float y = (rows - 1) - int(index / rows);
 			float w = 1.0f / cols;
 			float h = 1.0f / rows;
-			
+
 			std::vector<math::Vec2> uv;
 			uv.push_back(math::Vec2(x / cols, y / rows));
 			uv.push_back(math::Vec2(x / cols, y / rows + h));

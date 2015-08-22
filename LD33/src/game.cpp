@@ -1,7 +1,10 @@
 #include <aven.h>
+#include "tileengine/tileset.h"
+#include "tileengine/tilemap.h"
 
 using namespace aven;
 using namespace graphics;
+using namespace tileengine;
 
 class Game : public Aven
 {
@@ -9,6 +12,12 @@ private:
 	Window* window;
 	Layer* layer;
 	Label* fps;
+
+	float scale = 3.0f;
+
+	Tileset* tileset;
+	TileMap* tilemap;
+
 	Sprite* sprite;
 	Sprite* fighterSprite;
 
@@ -35,11 +44,13 @@ public:
 	~Game()
 	{
 		delete layer;
+		delete tileset;
+		delete tilemap;
 	}
 
 	void init() override
 	{
-		window = createWindow("LD #33", 1280, 720);
+		window = createWindow("LD #33", 1600, 900);
 		viewport = math::Vec2(1920, 1080);
 
 		FontManager::get()->setScale(window->getWidth() / viewport.x, window->getHeight() / viewport.y);
@@ -47,14 +58,45 @@ public:
 		layer = new Layer(new BatchRenderer2D(), shader, math::Mat4::orthographic(0.0f, viewport.x, 0.0f, viewport.y, -1.0f, 1.0f));
 		//shader->setUniform4f("colour", math::Vec4(1.0f, 1.0f, 1.0f, 1.0f));
 
+		// Render first, background
 		Sprite* sprite1 = new Sprite(0, 0, viewport.x, viewport.y, math::Vec4(0.0f, 1.0f, 1.0f, 1.0f));
 		layer->add(sprite1);
-		sprite = new Sprite(0.0f, 0.0f, 160, 160, TextureManager::add("tc", "res/textures/tc.png"));
-		layer->add(sprite);
+		
+		tileset = new Tileset("tileset00", TextureManager::add("tileset00", "res/textures/tileset00.png"), 32, 32);
+		tilemap = new TileMap(20, 12, tileset);
+		tilemap->submit(layer, scale);
 
-		fighterSprite = new Sprite(TextureManager::add("001-Fighter03", "res/textures/001-Fighter03.png"));
+		/*
+		//Sprite* ss_tileset00 = new Sprite(TextureManager::add("tileset00", "res/textures/tileset00.png"));
+		//ss_tileset00->sliceSprite(32, 32);
+		//ss_tileset00->size = math::Vec2(32 * scale, 32 * scale);
+		
+		for (int y = 0; y < 12; y++)
+		{
+			for (int x = 0; x < 20; x++)
+			{
+				int index = (x + y * 21) % 4;
+				//Sprite* tile = new Sprite(TextureManager::add("tileset00", "res/textures/tileset00.png"));
+				//tile->sliceSprite(32, 32);
+				//tile->getSlice(index);
+				//tile->size = math::Vec2(32 * scale, 32 * scale);
+
+				tileset00 = new Tileset("tileset00", TextureManager::add("tileset00", "res/textures/tileset00.png"), 32, 32);
+				
+				Sprite* tile = tileset00->getTile(index);
+				tile->size = tile->size * scale;
+				//Sprite* tile = new Sprite(*ss_tileset00->getSlice(index));
+				tile->position = math::Vec2(x * tileset00->getTileWidth() * scale, y * tileset00->getTileHeight() * scale);
+
+				layer->add(tile);
+			}
+		}
+		*/
+		
+		fighterSprite = new Sprite(TextureManager::add("001-Fighter03", "res/textures/001-Fighter01.png"));
 		fighterSprite->sliceSprite(32, 48);
-		fighterSprite->getSlice(1, 1);
+		fighterSprite->getSlice(1, 1);		
+		fighterSprite->size = math::Vec2(32 * scale, 48 * scale);
 		layer->add(fighterSprite);
 
 		float a_fps = 8;
@@ -73,7 +115,7 @@ public:
 		Sprite* fps_bg = new Sprite(0, 0, 192, 56, math::Vec4(0.3f, 0.3f, 0.3f, 0.75f));
 		fpsGroup->add(fps_bg);
 		fps = new Label("", 4, 14, 0xff00ff00);
-		fpsGroup->add(fps);
+		fpsGroup->add(fps);		
 
 		//audio::SoundManager::add(new audio::Sound("sanctified", "res/sanctified.ogg"))->play();
 		//audio::SoundManager::get("sanctified")->setGain(0.1f);

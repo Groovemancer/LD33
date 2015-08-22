@@ -27,7 +27,10 @@ namespace aven
 			{
 				if (t->getName() == name)
 				{
-					delete texture;
+					if (texture != t)
+					{
+						delete texture;
+					}
 					return t;
 				}
 			}
